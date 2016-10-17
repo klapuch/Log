@@ -1,0 +1,29 @@
+{
+  "name": "klapuch/log",
+  "description": "log, exception, error",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Dominik Klapuch",
+      "email": "klapuchdominik@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "nette/tester": "^1.7"
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Klapuch\\Log\\": [
+        "Core/",
+        "Tests/"
+      ]
+    }
+  }
+}
