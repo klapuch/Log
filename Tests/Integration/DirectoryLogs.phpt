@@ -35,7 +35,7 @@ final class DirectoryLogs extends TestCase\Filesystem {
 				))->put(new Log\FakeLog());
 			},
 			\InvalidArgumentException::class,
-			'Logs can be putted only to directories'
+			'Log can be putted only to directories'
 		);
 	}
 

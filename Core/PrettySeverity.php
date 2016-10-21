@@ -3,7 +3,7 @@ declare(strict_types = 1);
 namespace Klapuch\Log;
 
 /**
- * Severity formatted to pretty format
+ * Pretty formatted severity
  */
 final class PrettySeverity implements Severity {
 	private const UNKNOWN_FORMAT = '|';

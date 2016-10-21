@@ -3,7 +3,7 @@ declare(strict_types = 1);
 namespace Klapuch\Log;
 
 /**
- * Logs with permission to be written
+ * Logs with permission to be written to directory
  */
 final class DirectoryLogs implements Logs {
 	private $origin;
@@ -24,7 +24,7 @@ final class DirectoryLogs implements Logs {
 			);
 		} elseif(!is_dir($this->directory)) {
 			throw new \InvalidArgumentException(
-				'Logs can be putted only to directories'
+				'Log can be putted only to directories'
 			);
 		} elseif(!is_writable($this->directory)) {
 			throw new\InvalidArgumentException(
