@@ -6,9 +6,8 @@ const LOGS = __DIR__ . '/Tests/Temporary';
 try {
 	throw new \Exception('Exception!!!');
 } catch(\Throwable $ex) {
-	(new Log\DirectoryLogs(
-		new Log\FilesystemLogs(LOGS),
-		LOGS
+	(new Log\FilesystemLogs(
+		new Log\DynamicLocation(new Log\DirectoryLocation(LOGS))
 	))->put(
 		new Log\PrettyLog(
 			$ex,

@@ -8,27 +8,15 @@ namespace Klapuch\Log;
 final class FilesystemLogs implements Logs {
 	private $location;
 
-	public function __construct(string $location) {
+	public function __construct(Location $location) {
 	    $this->location = $location;
 	}
 
 	public function put(Log $log): void {
 		file_put_contents(
-			$this->location . DIRECTORY_SEPARATOR . $this->filename(),
+			$this->location->path(),
 			$log->description(),
-			LOCK_EX
+			LOCK_EX | FILE_APPEND
 		);
-	}
-
-	/**
-	 * Unique filename for the log being putted
-	 * @return string
-	 */
-	private function filename(): string {
-		return substr(
-			md5(serialize($this) . base64_encode(random_bytes(5))),
-			0,
-			20
-		) . date('Y-m-d--H-i');
 	}
 }
