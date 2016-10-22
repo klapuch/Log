@@ -31,6 +31,14 @@ final class FilesystemLogs extends TestCase\Filesystem {
 		Assert::true(mb_strlen(current(glob(self::LOG_FILES))) <= 200);
 	}
 
+	public function testNoSpecialCharactersAsFilename() {
+		(new Log\FilesystemLogs(self::LOGS))->put(new Log\FakeLog('foo'));
+		Assert::match(
+			'~^[\w\d-]+\z~i',
+			basename(current(glob(self::LOG_FILES)))
+		);
+	}
+
 	public function testFilenameWithDatetime() {
 		(new Log\FilesystemLogs(self::LOGS))->put(new Log\FakeLog('foo'));
 		$log = basename(current(glob(self::LOG_FILES)));
