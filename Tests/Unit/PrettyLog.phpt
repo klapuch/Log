@@ -42,6 +42,16 @@ final class PrettyLog extends Tester\TestCase {
 		);
 	}
 
+	public function testLogWithoutCode() {
+		Assert::contains(
+			'- 0 - ',
+			(new Log\PrettyLog(
+				new \Exception(''),
+				new Log\FakeSeverity('***SEVERITY***')
+			))->description()
+		);
+	}
+
 	public function testSpaceBetweenDescriptionAndTrace() {
 		Assert::match(
 			'~^.+[\r\n]{2}.+[\w\W^]+\z~',
