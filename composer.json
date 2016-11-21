@@ -21,7 +21,13 @@
   "autoload": {
 	"psr-4": {
 	  "Klapuch\\Log\\": [
-		"Core/",
+		"Core/"
+	  ]
+	}
+  },
+  "autoload-dev": {
+	"psr-4": {
+	  "Klapuch\\Log\\": [
 		"Tests/"
 	  ]
 	}
