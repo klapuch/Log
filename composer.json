@@ -16,7 +16,7 @@
   },
   "require-dev": {
     "ext-mbstring": "*",
-	"nette/tester": "^1.7"
+    "nette/tester": "^1.7"
   },
   "autoload": {
 	"psr-4": {
