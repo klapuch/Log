@@ -20,17 +20,10 @@ final class DirectoryLocation implements Location {
 					$this->path
 				)
 			);
-		} elseif(!is_dir($this->path)) {
+		} elseif(!is_dir($this->path) || !is_writable($this->path)) {
 			throw new \InvalidArgumentException(
 				sprintf(
-					'"%s" is not a directory',
-					$this->path
-				)
-			);
-		} elseif(!is_writable($this->path)) {
-			throw new\InvalidArgumentException(
-				sprintf(
-					'Directory "%s" is not writable',
+					'"%s" is not a directory or is not writable',
 					$this->path
 				)
 			);

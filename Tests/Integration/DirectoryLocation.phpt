@@ -30,20 +30,7 @@ final class DirectoryLocation extends TestCase\Filesystem {
 				(new Log\DirectoryLocation($filename))->path();
 			},
 			\InvalidArgumentException::class,
-			"\"$filename\" is not a directory"
-		);
-	}
-
-	public function testNonWritableDirectory() {
-		$directory = __DIR__ . '/../Temporary/logs';
-		Tester\Helpers::purge($directory);
-		chmod($directory, 0555);
-		Assert::exception(
-			function() use ($directory) {
-				(new Log\DirectoryLocation($directory))->path();
-			},
-			\InvalidArgumentException::class,
-			"Directory \"$directory\" is not writable"
+			"\"$filename\" is not a directory or is not writable"
 		);
 	}
 
