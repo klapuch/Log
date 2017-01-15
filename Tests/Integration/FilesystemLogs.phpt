@@ -41,7 +41,7 @@ final class FilesystemLogs extends TestCase\Filesystem {
 		Assert::same('bar', file_get_contents(self::LOGS . '/b.txt'));
 	}
 
-	public function testAvailableAppending() {
+	public function testAppending() {
 		$logs = new Log\FilesystemLogs(new Log\FakeLocation(self::LOG));
 		$logs->put(new Log\FakeLog('First'));
 		$logs->put(new Log\FakeLog('Second'));

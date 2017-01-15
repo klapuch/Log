@@ -19,7 +19,7 @@ final class JustifiedSeverity extends Tester\TestCase {
 		);
 	}
 
-	public function testUnknownSeverity() {
+	public function testThrowingOnUnknownSeverity() {
 		Assert::exception(
 			function() {
 				(new Log\JustifiedSeverity('foo'))->level();
@@ -29,7 +29,7 @@ final class JustifiedSeverity extends Tester\TestCase {
 		);
 	}
 
-	public function testCaseSensitiveSeverity() {
+	public function testThrowingOnCaseInsensitiveSeverity() {
 		Assert::exception(
 			function() {
 				(new Log\JustifiedSeverity(

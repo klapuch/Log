@@ -13,7 +13,7 @@ use Tester\Assert;
 require __DIR__ . '/../bootstrap.php';
 
 final class DirectoryLocation extends TestCase\Filesystem {
-	public function testUnknownFilename() {
+	public function testThrowingOnUnknownFilename() {
 		Assert::exception(
 			function() {
 				(new Log\DirectoryLocation('foo'))->path();
@@ -23,7 +23,7 @@ final class DirectoryLocation extends TestCase\Filesystem {
 		);
 	}
 
-	public function testFileInsteadOfDirectory() {
+	public function testThrowingOnFileInsteadOfDirectory() {
 		$filename = Tester\FileMock::create('');
 		Assert::exception(
 			function() use ($filename) {
