@@ -1,5 +1,5 @@
 {
-  "name": "klapuch/log",
+  "name": "klapuch/logging",
   "description": "log, exception, error",
   "type": "library",
   "homepage": "https://github.com/klapuch/Log",
