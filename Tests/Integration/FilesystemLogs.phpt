@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 /**
  * @testCase
  * @phpVersion > 7.1
  */
-namespace Klapuch\Integration\Log;
+namespace Klapuch\Log\Integration;
 
 use Klapuch\Log;
 use Klapuch\Log\TestCase;

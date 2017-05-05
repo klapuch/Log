@@ -13,7 +13,7 @@ final class FakeLogs implements Logs {
 	}
 
 	public function put(Log $log): void {
-		if($this->location)
+		if ($this->location)
 			file_put_contents($this->location, $log->description());
 	}
 }

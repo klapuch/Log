@@ -18,7 +18,7 @@ final class JustifiedSeverity implements Severity {
 	}
 
 	public function level(): string {
-		if($this->justified())
+		if ($this->justified())
 			return $this->level;
 		throw new \InvalidArgumentException(
 			sprintf(

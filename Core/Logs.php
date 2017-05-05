@@ -5,7 +5,7 @@ namespace Klapuch\Log;
 interface Logs {
 	/**
 	 * Put a new log
-	 * @param Log $log
+	 * @param \Klapuch\Log\Log $log
 	 */
 	public function put(Log $log): void;
 }

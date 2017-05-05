@@ -13,14 +13,14 @@ final class DirectoryLocation implements Location {
 	}
 
 	public function path(): string {
-		if(!file_exists($this->path)) {
+		if (!file_exists($this->path)) {
 			throw new \InvalidArgumentException(
 				sprintf(
 					'Path to directory "%s" does not exist',
 					$this->path
 				)
 			);
-		} elseif(!is_dir($this->path) || !is_writable($this->path)) {
+		} elseif (!is_dir($this->path) || !is_writable($this->path)) {
 			throw new \InvalidArgumentException(
 				sprintf(
 					'"%s" is not a directory or is not writable',

@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 /**
  * @testCase
  * @phpVersion > 7.1
  */
-namespace Klapuch\Integration\Log;
+namespace Klapuch\Log\Integration;
 
 use Klapuch\Log;
 use Klapuch\Log\TestCase;
@@ -30,7 +31,7 @@ final class DirectoryLocation extends TestCase\Filesystem {
 				(new Log\DirectoryLocation($filename))->path();
 			},
 			\InvalidArgumentException::class,
-			"\"$filename\" is not a directory or is not writable"
+			sprintf('"%s" is not a directory or is not writable', $filename)
 		);
 	}
 

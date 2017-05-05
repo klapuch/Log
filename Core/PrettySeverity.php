@@ -29,7 +29,7 @@ final class PrettySeverity implements Severity {
 	 * @return string
 	 */
 	private function prettify(string $level): string {
-		if(array_key_exists($level, self::FORMATS))
+		if (array_key_exists($level, self::FORMATS))
 			return $this->wrap(self::FORMATS[$level], $level);
 		return $this->wrap(self::UNKNOWN_FORMAT, $level ?: self::UNKNOWN_LEVEL);
 	}

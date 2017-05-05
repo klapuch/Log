@@ -13,7 +13,7 @@ abstract class Filesystem extends Tester\TestCase {
 		$files = new \RecursiveIteratorIterator(
 			new \RecursiveDirectoryIterator(self::TEMPORARY)
 		);
-		foreach($files as $file)
+		foreach ($files as $file)
 			chmod($file->getPathName(), 0777);
 	}
 }

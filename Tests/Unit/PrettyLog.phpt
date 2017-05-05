@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 /**
  * @testCase
  * @phpVersion > 7.1
  */
-namespace Klapuch\Unit\Log;
+namespace Klapuch\Log\Unit;
 
 use Klapuch\Log;
 use Tester;
@@ -68,7 +69,7 @@ final class PrettyLog extends Tester\TestCase {
 			new Log\FakeSeverity('***SEVERITY***')
 		))->description();
 		Assert::contains(
-			'#0 [internal function]: Klapuch\Unit\Log\PrettyLog->testIncludedTrace()',
+			'#0 [internal function]: Klapuch\Log\Unit\PrettyLog->testIncludedTrace()',
 			$description
 		);
 		Assert::contains('#4 {main}', $description);
