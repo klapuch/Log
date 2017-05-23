@@ -9,7 +9,7 @@ final class FakeLocation implements Location {
 	private $path;
 
 	public function __construct(string $path) {
-	    $this->path = $path;
+		$this->path = $path;
 	}
 
 	public function path(): string {

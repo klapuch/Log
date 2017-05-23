@@ -9,7 +9,7 @@ final class FakeLog implements Log {
 	private $description;
 
 	public function __construct(string $description = null) {
-	    $this->description = $description;
+		$this->description = $description;
 	}
 
 	public function description(): string {

@@ -9,7 +9,7 @@ final class FilesystemLogs implements Logs {
 	private $location;
 
 	public function __construct(Location $location) {
-	    $this->location = $location;
+		$this->location = $location;
 	}
 
 	public function put(Log $log): void {

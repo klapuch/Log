@@ -16,7 +16,7 @@ final class PrettySeverity implements Severity {
 	private $origin;
 
 	public function __construct(Severity $origin) {
-	    $this->origin = $origin;
+		$this->origin = $origin;
 	}
 
 	public function level(): string {

@@ -9,7 +9,7 @@ final class FakeSeverity implements Severity {
 	private $level;
 
 	public function __construct(string $level = null) {
-	    $this->level = $level;
+		$this->level = $level;
 	}
 
 	public function level(): string {
