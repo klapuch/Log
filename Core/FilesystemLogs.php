@@ -14,7 +14,7 @@ final class FilesystemLogs implements Logs {
 
 	public function put(Log $log): void {
 		file_put_contents(
-			$this->location->path(),
+			$this->location->path()->getPathname(),
 			$log->description(),
 			LOCK_EX | FILE_APPEND
 		);

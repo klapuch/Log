@@ -5,7 +5,7 @@ namespace Klapuch\Log;
 interface Location {
 	/**
 	 * Path to the location
-	 * @return string
+	 * @return \SplFileInfo
 	 */
-	public function path(): string;
+	public function path(): \SplFileInfo;
 }

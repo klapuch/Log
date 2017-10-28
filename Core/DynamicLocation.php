@@ -12,8 +12,10 @@ final class DynamicLocation implements Location {
 		$this->location = $location;
 	}
 
-	public function path(): string {
-		return $this->location->path() . DIRECTORY_SEPARATOR . $this->filename();
+	public function path(): \SplFileInfo {
+		return new \SplFileInfo(
+			$this->location->path() . DIRECTORY_SEPARATOR . $this->filename()
+		);
 	}
 
 	/**

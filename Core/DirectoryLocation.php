@@ -6,28 +6,28 @@ namespace Klapuch\Log;
  * Location to the directory
  */
 final class DirectoryLocation implements Location {
-	private $path;
+	private $file;
 
-	public function __construct(string $path) {
-		$this->path = $path;
+	public function __construct(\SplFileInfo $file) {
+		$this->file = $file;
 	}
 
-	public function path(): string {
-		if (!file_exists($this->path)) {
+	public function path(): \SplFileInfo {
+		if (!$this->file->isReadable()) {
 			throw new \InvalidArgumentException(
 				sprintf(
 					'Path to directory "%s" does not exist',
-					$this->path
+					$this->file
 				)
 			);
-		} elseif (!is_dir($this->path) || !is_writable($this->path)) {
+		} elseif (!$this->file->isDir() || !$this->file->isWritable()) {
 			throw new \InvalidArgumentException(
 				sprintf(
 					'"%s" is not a directory or is not writable',
-					$this->path
+					$this->file
 				)
 			);
 		}
-		return $this->path;
+		return $this->file;
 	}
 }

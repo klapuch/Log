@@ -8,11 +8,11 @@ namespace Klapuch\Log;
 final class FakeLocation implements Location {
 	private $path;
 
-	public function __construct(string $path) {
+	public function __construct(\SplFileInfo $path) {
 		$this->path = $path;
 	}
 
-	public function path(): string {
+	public function path(): \SplFileInfo {
 		return $this->path;
 	}
 }

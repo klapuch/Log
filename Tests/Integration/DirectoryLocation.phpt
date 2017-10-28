@@ -17,7 +17,7 @@ final class DirectoryLocation extends TestCase\Filesystem {
 	public function testThrowingOnUnknownFilename() {
 		Assert::exception(
 			function() {
-				(new Log\DirectoryLocation('foo'))->path();
+				(new Log\DirectoryLocation(new \SplFileInfo('foo')))->path();
 			},
 			\InvalidArgumentException::class,
 			'Path to directory "foo" does not exist'
@@ -28,7 +28,7 @@ final class DirectoryLocation extends TestCase\Filesystem {
 		$filename = Tester\FileMock::create('');
 		Assert::exception(
 			function() use ($filename) {
-				(new Log\DirectoryLocation($filename))->path();
+				(new Log\DirectoryLocation(new \SplFileInfo($filename)))->path();
 			},
 			\InvalidArgumentException::class,
 			sprintf('"%s" is not a directory or is not writable', $filename)
@@ -36,7 +36,10 @@ final class DirectoryLocation extends TestCase\Filesystem {
 	}
 
 	public function testDirectory() {
-		Assert::same(__DIR__, (new Log\DirectoryLocation(__DIR__))->path());
+		Assert::equal(
+			new \SplFileInfo(__DIR__),
+			(new Log\DirectoryLocation(new \SplFileInfo(__DIR__)))->path()
+		);
 	}
 }
 
