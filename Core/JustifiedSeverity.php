@@ -23,7 +23,7 @@ final class JustifiedSeverity implements Severity {
 		throw new \InvalidArgumentException(
 			sprintf(
 				'Justified levels for severity are %s - "%s" given',
-				$this->readableLevels(),
+				implode(', ', self::LEVELS),
 				$this->level
 			)
 		);
@@ -35,13 +35,5 @@ final class JustifiedSeverity implements Severity {
 	 */
 	private function justified(): bool {
 		return in_array($this->level, self::LEVELS);
-	}
-
-	/**
-	 * Human readable levels
-	 * @return string
-	 */
-	private function readableLevels(): string {
-		return implode(', ', self::LEVELS);
 	}
 }

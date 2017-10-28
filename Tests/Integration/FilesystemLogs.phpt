@@ -25,17 +25,17 @@ final class FilesystemLogs extends TestCase\Filesystem {
 
 	public function testLoggingToEmptyDirectory() {
 		(new Log\FilesystemLogs(
-			new Log\FakeLocation(new \SplFileInfo(self::LOG))
+			new \SplFileInfo(self::LOG)
 		))->put(new Log\FakeLog('foo'));
 		Assert::true(is_file(self::LOG));
 	}
 
 	public function testLoggingMultipleTimesWithoutRewriting() {
 		(new Log\FilesystemLogs(
-			new Log\FakeLocation(new \SplFileInfo(self::LOGS . '/a.txt'))
+			new \SplFileInfo(self::LOGS . '/a.txt')
 		))->put(new Log\FakeLog('foo'));
 		(new Log\FilesystemLogs(
-			new Log\FakeLocation(new \SplFileInfo(self::LOGS . '/b.txt'))
+			new \SplFileInfo(self::LOGS . '/b.txt')
 		))->put(new Log\FakeLog('bar'));
 		Assert::count(2, glob(self::LOG_FILES));
 		Assert::same('foo', file_get_contents(self::LOGS . '/a.txt'));
@@ -43,7 +43,7 @@ final class FilesystemLogs extends TestCase\Filesystem {
 	}
 
 	public function testAppending() {
-		$logs = new Log\FilesystemLogs(new Log\FakeLocation(new \SplFileInfo(self::LOG)));
+		$logs = new Log\FilesystemLogs(new \SplFileInfo(self::LOG));
 		$logs->put(new Log\FakeLog('First'));
 		$logs->put(new Log\FakeLog('Second'));
 		Assert::count(1, glob(self::LOG_FILES));
@@ -55,7 +55,7 @@ final class FilesystemLogs extends TestCase\Filesystem {
 		file_put_contents(self::LOGS . '/b', 'This is b');
 		Assert::count(2, glob(self::LOG_FILES));
 		(new Log\FilesystemLogs(
-			new Log\FakeLocation(new \SplFileInfo(self::LOG))
+			new \SplFileInfo(self::LOG)
 		))->put(new Log\FakeLog('foo'));
 		Assert::count(3, glob(self::LOG_FILES));
 		Assert::same('This is a', file_get_contents(self::LOGS . '/a'));

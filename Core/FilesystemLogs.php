@@ -8,13 +8,13 @@ namespace Klapuch\Log;
 final class FilesystemLogs implements Logs {
 	private $location;
 
-	public function __construct(Location $location) {
+	public function __construct(\SplFileInfo $location) {
 		$this->location = $location;
 	}
 
 	public function put(Log $log): void {
 		file_put_contents(
-			$this->location->path()->getPathname(),
+			$this->location->getPathname(),
 			$log->description(),
 			LOCK_EX | FILE_APPEND
 		);
