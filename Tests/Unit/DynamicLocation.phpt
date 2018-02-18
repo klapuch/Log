@@ -25,7 +25,7 @@ final class DynamicLocation extends Tester\TestCase {
 
 	public function testFilenameWithDatetime() {
 		$file = (new Log\DynamicLocation('directory'));
-		Assert::contains(date('Y-m-d--H-i'), $file->getBasename());
+		Assert::contains(date('Y-m-d--H-i-s'), $file->getBasename());
 	}
 
 	public function testAppendedSlash() {

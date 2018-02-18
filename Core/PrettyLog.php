@@ -16,7 +16,7 @@ final class PrettyLog implements Log {
 
 	public function description(): string {
 		return sprintf(
-			"%s\r\n\r\n%s",
+			"%s\r\n%s\r\n\r\n",
 			$this->prettify($this->exception),
 			$this->exception->getTraceAsString()
 		);
