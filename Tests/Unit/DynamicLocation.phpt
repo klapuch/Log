@@ -13,7 +13,7 @@ use Tester\Assert;
 require __DIR__ . '/../bootstrap.php';
 
 final class DynamicLocation extends Tester\TestCase {
-	public function testFilenameLength() {
+	public function testPortableFilenameLength() {
 		$file = (new Log\DynamicLocation('directory'));
 		Assert::true(mb_strlen($file->getBasename()) <= 200);
 	}
