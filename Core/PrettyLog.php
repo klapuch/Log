@@ -30,7 +30,7 @@ final class PrettyLog implements Log {
 	private function prettify(\Throwable $exception): string {
 		return sprintf(
 			'%s - %s - %d - %s',
-			(new \DateTimeImmutable())->format('Y-m-d H:i'),
+			(new \DateTimeImmutable())->format('Y-m-d H:i:s'),
 			$this->severity->level(),
 			$exception->getCode(),
 			$exception->getMessage() ?: 'No message was provided'

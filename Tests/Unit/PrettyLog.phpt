@@ -15,7 +15,7 @@ require __DIR__ . '/../bootstrap.php';
 final class PrettyLog extends Tester\TestCase {
 	public function testIncludedDatetime() {
 		Assert::contains(
-			(new \DateTime())->format('Y-m-d H:i'),
+			(new \DateTime())->format('Y-m-d H:i:s'),
 			(new Log\PrettyLog(
 				new \Exception('error'),
 				new Log\FakeSeverity('***SEVERITY***')
@@ -53,9 +53,9 @@ final class PrettyLog extends Tester\TestCase {
 		);
 	}
 
-	public function testSpaceBetweenDescriptionAndTrace() {
+	public function testSpaceAfter() {
 		Assert::match(
-			'~^.+[\r\n]{2}.+[\w\W^]+\z~',
+			'~^.+[\r\n].+[\w\W^]+\r\n\r\n\z~',
 			(new Log\PrettyLog(
 				new \Exception(),
 				new Log\FakeSeverity('***SEVERITY***')
