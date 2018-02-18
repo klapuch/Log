@@ -41,6 +41,6 @@ final class PrettySeverity implements Severity {
 	 * @return string
 	 */
 	private function wrap(string $tag, string $level): string {
-		return sprintf('%1$s %2$s %1$s', $tag, $level);
+		return sprintf('%1$s%2$s%1$s', $tag, $level);
 	}
 }

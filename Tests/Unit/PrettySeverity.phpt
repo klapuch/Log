@@ -15,7 +15,7 @@ require __DIR__ . '/../bootstrap.php';
 final class PrettySeverity extends Tester\TestCase {
 	public function testInfoFormat() {
 		Assert::same(
-			'? INFO ?',
+			'?INFO?',
 			(new Log\PrettySeverity(
 				new Log\FakeSeverity(Log\Severity::INFO)
 			))->level()
@@ -24,7 +24,7 @@ final class PrettySeverity extends Tester\TestCase {
 
 	public function testWarningFormat() {
 		Assert::same(
-			'# WARNING #',
+			'#WARNING#',
 			(new Log\PrettySeverity(
 				new Log\FakeSeverity(Log\Severity::WARNING)
 			))->level()
@@ -33,7 +33,7 @@ final class PrettySeverity extends Tester\TestCase {
 
 	public function testErrorFormat() {
 		Assert::same(
-			'! ERROR !',
+			'!ERROR!',
 			(new Log\PrettySeverity(
 				new Log\FakeSeverity(Log\Severity::ERROR)
 			))->level()
@@ -42,7 +42,7 @@ final class PrettySeverity extends Tester\TestCase {
 
 	public function testEmptySeverityWithNotice() {
 		Assert::same(
-			'| UNSPECIFIED |',
+			'|UNSPECIFIED|',
 			(new Log\PrettySeverity(
 				new Log\FakeSeverity('')
 			))->level()
@@ -51,7 +51,7 @@ final class PrettySeverity extends Tester\TestCase {
 
 	public function testUnknownSeverityWithDefaultFormat() {
 		Assert::same(
-			'| foo |',
+			'|foo|',
 			(new Log\PrettySeverity(
 				new Log\FakeSeverity('foo')
 			))->level()
