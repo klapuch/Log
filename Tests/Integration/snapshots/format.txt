@@ -1,34 +1,20 @@
-[2005-01-01 10:00] foo
-#0 [internal function]: Klapuch\Log\Integration\FilesystemLogs->testFormat()
-#1 /var/www/Log/vendor/nette/tester/src/Framework/TestCase.php(152): call_user_func_array(Array, Array)
-#2 /var/www/Log/vendor/nette/tester/src/Framework/TestCase.php(58): Tester\TestCase->runTest(Object(ReflectionMethod))
-#3 /var/www/Log/Tests/Integration/FilesystemLogs.phpt(39): Tester\TestCase->run()
-#4 {main}
+[2005-01-01 10:00] message
+trace
 
 POST:
-array (
-  0 => 'post',
-)
+post
 
 GET:
-array (
-  0 => 'get',
-)
+get
 
 SESSION:
-array (
-  0 => 'session',
-)
+session
 
 COOKIE:
-array (
-  0 => 'cookie',
-)
+cookie
 
 INPUT:
 input
 
 SERVER:
-array (
-  0 => 'server',
-)
+server

@@ -2,28 +2,28 @@
 declare(strict_types = 1);
 namespace Klapuch\Log;
 
-final class FakeEnvironment  implements Environment {
+final class JsonEnvironment implements Environment {
 	public function post(): string {
-		return __FUNCTION__;
+		return json_encode($_POST);
 	}
 
 	public function get(): string {
-		return __FUNCTION__;
+		return json_encode($_GET);
 	}
 
 	public function session(): string {
-		return __FUNCTION__;
+		return json_encode($_SESSION ?? []);
 	}
 
 	public function cookie(): string {
-		return __FUNCTION__;
+		return json_encode($_COOKIE);
 	}
 
 	public function input(): string {
-		return __FUNCTION__;
+		return file_get_contents('php://input');
 	}
 
 	public function server(): string {
-		return __FUNCTION__;
+		return json_encode($_SERVER);
 	}
 }

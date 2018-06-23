@@ -9,9 +9,9 @@ final class ChainedLogs implements Logs {
 		$this->logs = $logs;
 	}
 
-	public function put(\Throwable $exception, Environment $environment, \DateTimeInterface $now): void {
+	public function put(Log $log): void {
 		foreach ($this->logs as $current) {
-			$current->put($exception, $environment, $now);
+			$current->put($log);
 		}
 	}
 }
