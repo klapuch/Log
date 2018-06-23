@@ -20,15 +20,20 @@ final class DetailedLog implements Log {
 			(new ShortLog($this->exception, $this->severity))->description(),
 			$this->exception->getTraceAsString(),
 			$this->print('$_SERVER', $_SERVER)
-				. $this->print('$_SESSION', $_SESSION ?? [])
-				. $this->print('$_COOKIE', $_COOKIE)
-				. $this->print('$_POST', $_POST)
-				. $this->print('$_GET', $_GET)
+			. $this->print('$_SESSION', $_SESSION ?? [])
+			. $this->print('$_COOKIE', $_COOKIE)
+			. $this->print('$_POST', $_POST)
+			. $this->print('$_GET', $_GET)
+			. $this->print('INPUT', file_get_contents('php://input'))
 		);
 	}
 
-
-	private function print(string $name, array $part): string
+	/**
+	 * @param string $name
+	 * @param string|mixed[] $part
+	 * @return string
+	 */
+	private function print(string $name, $part): string
 	{
 		return sprintf("%s:\r\n%s\r\n\r\n", $name, var_export($part, true));
 	}
