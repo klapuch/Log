@@ -13,26 +13,20 @@ final class ElasticsearchLogs implements Logs {
 		'type' => 'pile',
 	];
 	private $elasticsearch;
-	private $now;
 
-	public function __construct(
-		Elasticsearch\Client $elasticsearch,
-		\DateTimeInterface $now
-	) {
+	public function __construct(Elasticsearch\Client $elasticsearch) {
 		$this->elasticsearch = $elasticsearch;
-		$this->now = $now;
 	}
 
-	public function put(Log $log): void {
-		$this->elasticsearch->index(self::OPTIONS + ['body' => $this->body($log)]);
+	public function put(\Throwable $exception, Environment $environment, \DateTimeInterface $now): void {
+		$this->elasticsearch->index(self::OPTIONS + ['body' => $this->body($exception, $environment, $now)]);
 	}
 
-	private function body(Log $log): array {
-		$environment = $log->environment();
+	private function body(\Throwable $exception, Environment $environment, \DateTimeInterface $now): array {
 		return [
-			'logged_at' => $this->now->format('Y-m-d H:i'),
-			'message' => $log->message(),
-			'trace' => $log->trace(),
+			'logged_at' => $now->format('Y-m-d H:i'),
+			'message' => $exception->getMessage(),
+			'trace' => $exception->getTraceAsString(),
 			'cookie' => $environment->cookie(),
 			'get' => $environment->get(),
 			'input' => $environment->input(),

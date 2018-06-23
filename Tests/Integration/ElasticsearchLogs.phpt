@@ -18,9 +18,12 @@ final class ElasticsearchLogs extends Tester\TestCase {
 
 	public function testStoringOnPile() {
 		(new Log\ElasticsearchLogs(
-			$this->elasticsearch,
-			(new \DateTimeImmutable('2005-01-01 10:00'))
-		))->put(new Log\JsonLog(new \RuntimeException('Ooops')));
+			$this->elasticsearch
+		))->put(
+			new \RuntimeException('Ooops'),
+			new Log\CurrentEnvironment(),
+			new \DateTimeImmutable('2005-01-01 10:00')
+		);
 		sleep(1);
 		$response = $this->elasticsearch->search(['index' => 'logs', 'type' => 'pile']);
 		Assert::same(1, $response['hits']['total']);

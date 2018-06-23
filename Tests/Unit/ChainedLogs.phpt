@@ -17,16 +17,16 @@ final class ChainedLogs extends Tester\TestCase {
 		ob_start();
 		(new Log\ChainedLogs(
 			new class implements Log\Logs {
-				public function put(Log\Log $log): void {
+				public function put(\Throwable $exception, Log\Environment $environment, \DateTimeInterface $now): void {
 					echo 'a';
 				}
 			},
 			new class implements Log\Logs {
-				public function put(Log\Log $log): void {
+				public function put(\Throwable $exception, Log\Environment $environment, \DateTimeInterface $now): void {
 					echo 'b';
 				}
 			}
-		))->put(new Log\FakeLog());
+		))->put(new \RuntimeException(), new Log\FakeEnvironment(), new \DateTimeImmutable());
 		Assert::same('ab', ob_get_clean());
 	}
 }

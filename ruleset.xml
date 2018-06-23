@@ -49,6 +49,10 @@
 		<exclude-pattern>Core/FilesystemLogs.php</exclude-pattern>
 	</rule>
 
+    <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements.UnusedMethod">
+		<exclude-pattern>Core/FilesystemLogs.php</exclude-pattern>
+	</rule>
+
 	<rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
 		<properties>
 			<property name="usefulAnnotations" type="array" value="@dataProvider,@throws"/>

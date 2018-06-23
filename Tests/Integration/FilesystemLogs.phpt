@@ -23,9 +23,12 @@ final class FilesystemLogs extends TestCase\Filesystem {
 
 	public function testFormat() {
 		(new Log\FilesystemLogs(
-			new \SplFileInfo(self::LOGS . '/a.txt'),
+			new \SplFileInfo(self::LOGS . '/a.txt')
+		))->put(
+			new \RuntimeException('foo'),
+			new Log\FakeEnvironment(),
 			new \DateTimeImmutable('2005-01-01 10:00')
-		))->put(new Log\FakeLog('message', 'trace', new Log\FakeEnvironment()));
+		);
 		Assert::same(
 			file_get_contents(__DIR__ . '/snapshots/format.txt'),
 			file_get_contents(self::LOGS . '/a.txt')
