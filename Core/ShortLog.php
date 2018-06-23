@@ -3,9 +3,9 @@ declare(strict_types = 1);
 namespace Klapuch\Log;
 
 /**
- * Pretty formatted log
+ * One line short log
  */
-final class PrettyLog implements Log {
+final class ShortLog implements Log {
 	private $exception;
 	private $severity;
 
@@ -16,9 +16,8 @@ final class PrettyLog implements Log {
 
 	public function description(): string {
 		return sprintf(
-			"%s\r\n%s\r\n\r\n",
-			$this->prettify($this->exception),
-			$this->exception->getTraceAsString()
+			"%s\r\n",
+			$this->prettify($this->exception)
 		);
 	}
 
@@ -29,11 +28,10 @@ final class PrettyLog implements Log {
 	 */
 	private function prettify(\Throwable $exception): string {
 		return sprintf(
-			'%s - %s - %d - %s',
+			'[%s] - %s - %s',
 			(new \DateTimeImmutable())->format('Y-m-d H:i:s'),
 			$this->severity->level(),
-			$exception->getCode(),
-			$exception->getMessage() ?: 'No message was provided'
+			$exception->getMessage()
 		);
 	}
 }

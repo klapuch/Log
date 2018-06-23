@@ -12,11 +12,11 @@ use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
 
-final class PrettyLog extends Tester\TestCase {
+final class ShortLog extends Tester\TestCase {
 	public function testIncludedDatetime() {
 		Assert::contains(
-			(new \DateTime())->format('Y-m-d H:i:s'),
-			(new Log\PrettyLog(
+			sprintf('[%s]', (new \DateTime())->format('Y-m-d H:i:s')),
+			(new Log\ShortLog(
 				new \Exception('error'),
 				new Log\FakeSeverity('***SEVERITY***')
 			))->description()
@@ -26,7 +26,7 @@ final class PrettyLog extends Tester\TestCase {
 	public function testIncludedSeverity() {
 		Assert::contains(
 			'***SEVERITY***',
-			(new Log\PrettyLog(
+			(new Log\ShortLog(
 				new \Exception('error'),
 				new Log\FakeSeverity('***SEVERITY***')
 			))->description()
@@ -35,18 +35,8 @@ final class PrettyLog extends Tester\TestCase {
 
 	public function testLogWithoutMessage() {
 		Assert::contains(
-			'No message was provided',
-			(new Log\PrettyLog(
-				new \Exception(''),
-				new Log\FakeSeverity('***SEVERITY***')
-			))->description()
-		);
-	}
-
-	public function testLogWithoutCode() {
-		Assert::contains(
-			'- 0 - ',
-			(new Log\PrettyLog(
+			'- ',
+			(new Log\ShortLog(
 				new \Exception(''),
 				new Log\FakeSeverity('***SEVERITY***')
 			))->description()
@@ -55,25 +45,13 @@ final class PrettyLog extends Tester\TestCase {
 
 	public function testSpaceAfter() {
 		Assert::match(
-			'~^.+[\r\n].+[\w\W^]+\r\n\r\n\z~',
-			(new Log\PrettyLog(
+			'~.+\r\n\z~',
+			(new Log\ShortLog(
 				new \Exception(),
 				new Log\FakeSeverity('***SEVERITY***')
 			))->description()
 		);
 	}
-
-	public function testIncludedTrace() {
-		$description = (new Log\PrettyLog(
-			new \Exception(),
-			new Log\FakeSeverity('***SEVERITY***')
-		))->description();
-		Assert::contains(
-			'#0 [internal function]: Klapuch\Log\Unit\PrettyLog->testIncludedTrace()',
-			$description
-		);
-		Assert::contains('#4 {main}', $description);
-	}
 }
 
-(new PrettyLog())->run();
+(new ShortLog())->run();
