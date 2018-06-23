@@ -16,7 +16,7 @@ final class DetailedLog implements Log {
 
 	public function description(): string {
 		return sprintf(
-			"%s\r\n%s\r\n%s",
+			"%s\r\n%s\r\n\r\n%s",
 			(new ShortLog($this->exception, $this->severity))->description(),
 			$this->exception->getTraceAsString(),
 			$this->print('$_SERVER', $_SERVER)
@@ -30,6 +30,6 @@ final class DetailedLog implements Log {
 
 	private function print(string $name, array $part): string
 	{
-		return sprintf("%s:\r\n%s\r\n", $name, var_export($part, true));
+		return sprintf("%s:\r\n%s\r\n\r\n", $name, var_export($part, true));
 	}
 }
