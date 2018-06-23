@@ -7,44 +7,45 @@ namespace Klapuch\Log;
  */
 final class FilesystemLogs implements Logs {
 	private $location;
-	private $now;
 
-	public function __construct(\SplFileInfo $location, \DateTimeInterface $now) {
+	public function __construct(\SplFileInfo $location) {
 		$this->location = $location;
-		$this->now = $now;
 	}
 
-	public function put(Log $log): void {
+	public function put(\Throwable $exception, Environment $environment, \DateTimeInterface $now): void {
 		file_put_contents(
 			$this->location->getPathname(),
-			$this->format($log),
+			$this->format($exception, $environment, $now),
 			LOCK_EX | FILE_APPEND
 		);
 	}
 
-	private function format(Log $log): string {
-		$environment = $log->environment();
-		return <<<EOT
-[{$this->now->format('Y-m-d H:i')}] {$log->message()}
-{$log->trace()}
+	private function format(\Throwable $exception, Environment $environment, \DateTimeInterface $now): string {
+		return <<<TXT
+[{$now->format('Y-m-d H:i')}] {$exception->getMessage()}
+{$exception->getTraceAsString()}
 
 POST:
-{$environment->post()}
+{$this->dump($environment->post())}
 
 GET:
-{$environment->get()}
+{$this->dump($environment->get())}
 
 SESSION:
-{$environment->session()}
+{$this->dump($environment->session())}
 
 COOKIE:
-{$environment->cookie()}
+{$this->dump($environment->cookie())}
 
 INPUT:
 {$environment->input()}
 
 SERVER:
-{$environment->server()}
-EOT;
+{$this->dump($environment->server())}
+TXT;
+	}
+
+	private function dump(array $expression): string {
+		return var_export($expression, true);
 	}
 }
