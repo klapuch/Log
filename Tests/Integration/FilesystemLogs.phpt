@@ -26,12 +26,11 @@ final class FilesystemLogs extends TestCase\Filesystem {
 			new \SplFileInfo(self::LOGS . '/a.txt')
 		))->put(
 			new \RuntimeException('foo'),
-			new Log\FakeEnvironment(),
-			new \DateTimeImmutable('2005-01-01 10:00')
+			new Log\FakeEnvironment()
 		);
 		Assert::same(
-			file_get_contents(__DIR__ . '/snapshots/format.txt'),
-			file_get_contents(self::LOGS . '/a.txt')
+			preg_replace('~^\[.+\]~', '[2010-01-01 01:01]', file_get_contents(self::LOGS . '/a.txt')),
+			file_get_contents(__DIR__ . '/snapshots/format.txt')
 		);
 	}
 }

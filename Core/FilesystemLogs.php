@@ -12,10 +12,10 @@ final class FilesystemLogs implements Logs {
 		$this->location = $location;
 	}
 
-	public function put(\Throwable $exception, Environment $environment, \DateTimeInterface $now): void {
+	public function put(\Throwable $exception, Environment $environment): void {
 		file_put_contents(
 			$this->location->getPathname(),
-			$this->format($exception, $environment, $now),
+			$this->format($exception, $environment, new \DateTimeImmutable()),
 			LOCK_EX | FILE_APPEND
 		);
 	}

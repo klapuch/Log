@@ -17,12 +17,12 @@ final class ChainedLogs extends Tester\TestCase {
 		ob_start();
 		(new Log\ChainedLogs(
 			new class implements Log\Logs {
-				public function put(\Throwable $exception, Log\Environment $environment, \DateTimeInterface $now): void {
+				public function put(\Throwable $exception, Log\Environment $environment): void {
 					echo 'a';
 				}
 			},
 			new class implements Log\Logs {
-				public function put(\Throwable $exception, Log\Environment $environment, \DateTimeInterface $now): void {
+				public function put(\Throwable $exception, Log\Environment $environment): void {
 					echo 'b';
 				}
 			}
