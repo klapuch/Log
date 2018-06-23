@@ -3,9 +3,7 @@ declare(strict_types = 1);
 namespace Klapuch\Log;
 
 interface Log {
-	/**
-	 * Description of the log itself
-	 * @return string
-	 */
-	public function description(): string;
+	public function message(): string;
+	public function trace(): string;
+	public function environment(): Environment;
 }

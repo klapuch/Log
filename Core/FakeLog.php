@@ -6,13 +6,29 @@ namespace Klapuch\Log;
  * Fake
  */
 final class FakeLog implements Log {
-	private $description;
+	private $message;
+	private $trace;
+	private $environment;
 
-	public function __construct(string $description = null) {
-		$this->description = $description;
+	public function __construct(
+		string $message = null,
+		string $trace = null,
+		Environment $environment = null
+	) {
+		$this->message = $message;
+		$this->trace = $trace;
+		$this->environment = $environment;
 	}
 
-	public function description(): string {
-		return $this->description;
+	public function message(): string {
+		return $this->message;
+	}
+
+	public function trace(): string {
+		return $this->trace;
+	}
+
+	public function environment(): Environment {
+		return $this->environment;
 	}
 }
