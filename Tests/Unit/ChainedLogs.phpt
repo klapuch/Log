@@ -26,7 +26,7 @@ final class ChainedLogs extends Tester\TestCase {
 					echo 'b';
 				}
 			}
-		))->put(new \RuntimeException(), new Log\FakeEnvironment(), new \DateTimeImmutable());
+		))->put(new \RuntimeException(), new Log\FakeEnvironment());
 		Assert::same('ab', ob_get_clean());
 	}
 }
